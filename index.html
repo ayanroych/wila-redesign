@@ -120,10 +120,11 @@
       right: 0;
       z-index: 1000;
       padding: 16px 0;
+      background: var(--navy-dark);
       transition: all 0.3s ease;
     }
     nav.scrolled {
-      background: rgba(255,255,255,0.97);
+      background: var(--navy-dark);
       backdrop-filter: blur(20px);
       box-shadow: var(--shadow-sm);
       padding: 10px 0;
@@ -141,8 +142,8 @@
       transition: color 0.3s;
     }
     .nav-logo span { color: var(--gold-light); }
-    nav.scrolled .nav-logo { color: var(--navy); }
-    nav.scrolled .nav-logo span { color: var(--gold); }
+    nav.scrolled .nav-logo { color: #fff; }
+    nav.scrolled .nav-logo span { color: var(--gold-light); }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a {
       font-weight: 500;
@@ -163,9 +164,9 @@
     }
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: #fff; }
-    nav.scrolled .nav-links a { color: #555; }
-    nav.scrolled .nav-links a:hover { color: var(--navy); }
-    nav.scrolled .nav-links a::after { background: var(--gold); }
+    nav.scrolled .nav-links a { color: rgba(255,255,255,0.85); }
+    nav.scrolled .nav-links a:hover { color: #fff; }
+    nav.scrolled .nav-links a::after { background: var(--gold-light); }
     .nav-cta {
       background: var(--gradient-gold) !important;
       color: #fff !important;
@@ -190,7 +191,11 @@
       border-radius: 2px;
       transition: all 0.3s;
     }
-    nav.scrolled .hamburger span { background: var(--navy); }
+    nav.scrolled .hamburger span { background: #fff; }
+    .nav-logo-img { height: 48px; width: auto; transition: height 0.3s; }
+    nav.scrolled .nav-logo-img { height: 40px; }
+    .footer-logo-img { height: 60px; width: auto; margin-bottom: 16px; filter: brightness(1); }
+    .hero-logo-img { height: 120px; width: auto; margin-bottom: 24px; }
 
     /* ===== HERO ===== */
     .hero {
@@ -713,6 +718,12 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
+      overflow: hidden;
+    }
+    .board-card .board-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .board-card h4 {
       font-family: 'Playfair Display', serif;
@@ -1176,7 +1187,7 @@
   <!-- NAVIGATION -->
   <nav id="navbar">
     <div class="container">
-      <a href="#" class="nav-logo">WILA<span>.</span></a>
+      <a href="#" class="nav-logo"><img src="wila-logo.png" alt="WILA" class="nav-logo-img" /></a>
       <div class="nav-links">
         <a href="#pillars">Our Pillars</a>
         <a href="#events">Events</a>
@@ -1208,6 +1219,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <img src="wila-logo.png" alt="WILA Logo" class="hero-logo-img" />
         <div class="hero-badge">Berkeley Haas Alumni Network</div>
         <h1>Celebrating the <span class="highlight">Power</span> of Women Together</h1>
         <p>A worldwide network of Berkeley Haas alumnae committed to a community that amplifies women's voices, nurtures authentic connections, and drives impact.</p>
@@ -1464,7 +1476,7 @@
       <div class="board-divider fade-up"><span>Executive Leadership</span></div>
       <div class="board-leadership fade-up">
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-gold);">TT</div>
+          <div class="board-avatar"><img src="tricia-tran.jpg" alt="Tricia Tran" /></div>
           <h4>Tricia Tran</h4>
           <p class="board-role">Founding Co-President &amp; Advisor</p>
           <a href="https://www.linkedin.com/in/triciatranbayarea/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Tricia Tran LinkedIn">
@@ -1472,7 +1484,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-coral);">AB</div>
+          <div class="board-avatar"><img src="abha-bhagat.jpeg" alt="Abha Bhagat" /></div>
           <h4>Abha Bhagat</h4>
           <p class="board-role">Founding Co-President</p>
           <a href="https://www.linkedin.com/in/abhabhagat/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Abha Bhagat LinkedIn">
@@ -1480,7 +1492,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-teal);">DP</div>
+          <div class="board-avatar"><img src="deepti-patibandla.jpeg" alt="Deepti Patibandla" /></div>
           <h4>Deepti Patibandla</h4>
           <p class="board-role">Co-President</p>
           <a href="https://www.linkedin.com/in/deeptipatibandla/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Deepti Patibandla LinkedIn">
@@ -1509,7 +1521,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: linear-gradient(135deg, #E1306C, #F4A4AB);">ND</div>
+          <div class="board-avatar"><img src="neha-dubey.jpeg" alt="Neha Dubey" /></div>
           <h4>Neha Dubey</h4>
           <p class="board-role">Treasurer</p>
           <a href="https://www.linkedin.com/in/neha-dubey99/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Neha Dubey LinkedIn">
@@ -1517,7 +1529,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-teal);">RA</div>
+          <div class="board-avatar"><img src="rosi-arnaudova.jpeg" alt="Rosi Arnaudova" /></div>
           <h4>Rosi Arnaudova</h4>
           <p class="board-role">VP Operations</p>
           <a href="https://www.linkedin.com/in/arnaudovarosi/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Rosi Arnaudova LinkedIn">
@@ -1533,7 +1545,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: linear-gradient(135deg, #2A9D8F, #5ECEC3);">BG</div>
+          <div class="board-avatar"><img src="berna-geylani.jpeg" alt="Berna Geylani" /></div>
           <h4>Berna Geylani</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/demandgenerationleader/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Berna Geylani LinkedIn">
@@ -1541,7 +1553,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: linear-gradient(135deg, var(--lavender), #A594F9);">KL</div>
+          <div class="board-avatar"><img src="katie-li.jpeg" alt="Katie Li" /></div>
           <h4>Katie Li</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/katienli" target="_blank" rel="noopener" class="board-linkedin" aria-label="Katie Li LinkedIn">
@@ -1549,7 +1561,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-coral);">LA</div>
+          <div class="board-avatar"><img src="laura-andersen.jpeg" alt="Laura Andersen" /></div>
           <h4>Laura Andersen</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/lauraandersen/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Laura Andersen LinkedIn">
@@ -1557,7 +1569,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-teal);">SK</div>
+          <div class="board-avatar"><img src="sara-kopunova.jpeg" alt="Sara Kopunova" /></div>
           <h4>Sara Kopunova</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/sara-kopunova/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Sara Kopunova LinkedIn">
@@ -1565,7 +1577,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: var(--gradient-gold);">JL</div>
+          <div class="board-avatar"><img src="jes-larussa.jpeg" alt="Jes La Russa" /></div>
           <h4>Jes La Russa</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/jeslarussa/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Jes La Russa LinkedIn">
@@ -1573,7 +1585,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: linear-gradient(135deg, var(--lavender), #A594F9);">MM</div>
+          <div class="board-avatar"><img src="michelle-ma.jpg" alt="Michelle Ma" /></div>
           <h4>Michelle Ma</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/michellemacoach" target="_blank" rel="noopener" class="board-linkedin" aria-label="Michelle Ma LinkedIn">
@@ -1581,7 +1593,7 @@
           </a>
         </div>
         <div class="board-card">
-          <div class="board-avatar" style="background: linear-gradient(135deg, #F77737, #FCAF45);">RM</div>
+          <div class="board-avatar"><img src="ruja-manghani.jpeg" alt="Ruja Manghani" /></div>
           <h4>Ruja Manghani</h4>
           <p class="board-role">Board Member</p>
           <a href="https://www.linkedin.com/in/rujamanghani-md" target="_blank" rel="noopener" class="board-linkedin" aria-label="Ruja Manghani LinkedIn">
@@ -1680,7 +1692,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="nav-logo">WILA<span>.</span></a>
+          <a href="#"><img src="wila-logo.png" alt="WILA" class="footer-logo-img" /></a>
           <p>Women in Leadership Alumnae — A worldwide network of Berkeley Haas alumnae committed to celebrating and amplifying the power of women together.</p>
         </div>
         <div class="footer-col">
