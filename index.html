@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WILA – Women in Leadership Alumnae | Berkeley Haas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --gold: #C4972F;
+      --gold-light: #E8C96A;
+      --navy: #003262;
+      --navy-dark: #001A3A;
+      --coral: #E8636F;
+      --coral-light: #FDECEE;
+      --teal: #2A9D8F;
+      --teal-light: #E6F7F5;
+      --lavender: #7B68EE;
+      --lavender-light: #F0EDFF;
+      --warm-white: #FFFCF7;
+      --gradient-hero: linear-gradient(135deg, #003262 0%, #1a1a5e 40%, #4a2080 70%, #E8636F 100%);
+      --gradient-gold: linear-gradient(135deg, #C4972F, #E8C96A);
+      --gradient-coral: linear-gradient(135deg, #E8636F, #F4A4AB);
+      --gradient-teal: linear-gradient(135deg, #2A9D8F, #5ECEC3);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.1);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-pad { padding: 100px 0; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--gradient-gold);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(196, 151, 47, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(196, 151, 47, 0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+    }
+    .btn-dark {
+      background: var(--navy);
+      color: #fff;
+    }
+    .btn-dark:hover {
+      background: var(--navy-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .nav-logo span { color: var(--gold-light); }
+    nav.scrolled .nav-logo { color: var(--navy); }
+    nav.scrolled .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-light);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #fff; }
+    nav.scrolled .nav-links a { color: #555; }
+    nav.scrolled .nav-links a:hover { color: var(--navy); }
+    nav.scrolled .nav-links a::after { background: var(--gold); }
+    .nav-cta {
+      background: var(--gradient-gold) !important;
+      color: #fff !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    nav.scrolled .hamburger span { background: var(--navy); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--gradient-hero);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(232,195,106,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232,99,111,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .hero-content { max-width: 700px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero h1 .highlight {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 540px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .hero-stat p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0;
+    }
+
+    /* ===== PILLARS ===== */
+    .pillars { background: var(--warm-white); }
+    .pillars-header { text-align: center; margin-bottom: 60px; }
+    .pillars-header .section-subtitle { margin: 0 auto; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .pillar-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .pillar-card:nth-child(1)::before { background: var(--gradient-gold); }
+    .pillar-card:nth-child(2)::before { background: var(--gradient-coral); }
+    .pillar-card:nth-child(3)::before { background: var(--gradient-teal); }
+    .pillar-card:nth-child(4)::before { background: linear-gradient(135deg, var(--lavender), #A594F9); }
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pillar-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+    .pillar-card:nth-child(1) .pillar-icon { background: linear-gradient(135deg, #FFF3D6, #FFEAB0); }
+    .pillar-card:nth-child(2) .pillar-icon { background: var(--coral-light); }
+    .pillar-card:nth-child(3) .pillar-icon { background: var(--teal-light); }
+    .pillar-card:nth-child(4) .pillar-icon { background: var(--lavender-light); }
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+    .pillar-card p {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ===== EVENTS ===== */
+    .events { background: #fff; }
+    .events-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease;
+      border: 1px solid #f0f0f0;
+    }
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .event-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .event-card:hover .event-image img { transform: scale(1.05); }
+    .event-date-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .event-date-badge .month {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--coral);
+    }
+    .event-date-badge .day {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .event-type-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+    .event-body { padding: 24px; }
+    .event-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .event-body p {
+      font-size: 0.88rem;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .event-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .event-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ===== SPOTLIGHT ===== */
+    .spotlight {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(196,151,47,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .spotlight .section-label { background: rgba(196,151,47,0.15); color: var(--gold-light); }
+    .spotlight .section-title { color: #fff; }
+    .spotlight .section-subtitle { color: rgba(255,255,255,0.6); }
+    .spotlight-header { margin-bottom: 48px; }
+    .spotlight-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .spotlight-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      position: relative;
+    }
+    .spotlight-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(196,151,47,0.3), rgba(232,99,111,0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .spotlight-image-placeholder .initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.2);
+    }
+    .spotlight-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .spotlight-info .role {
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .spotlight-info .quote {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+    }
+    .spotlight-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .spotlight-tags span {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .spotlight-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .mini-spotlight {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .mini-spotlight:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-4px);
+    }
+    .mini-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .mini-spotlight:nth-child(1) .mini-avatar { background: var(--gradient-coral); }
+    .mini-spotlight:nth-child(2) .mini-avatar { background: var(--gradient-teal); }
+    .mini-spotlight:nth-child(3) .mini-avatar { background: linear-gradient(135deg, var(--lavender), #A594F9); }
+    .mini-spotlight h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .mini-spotlight p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== STORIES ===== */
+    .stories { background: var(--warm-white); }
+    .stories-header { text-align: center; margin-bottom: 48px; }
+    .stories-header .section-subtitle { margin: 0 auto; }
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+    }
+    .story-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s;
+      border: 1px solid #f0f0f0;
+    }
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+    .story-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .story-image {
+      height: 100%;
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .story-featured .story-image-placeholder { background: linear-gradient(135deg, #E8C96A22, #E8636F22); }
+    .story-card:not(.story-featured) .story-image {
+      min-height: 180px;
+    }
+    .story-card:not(.story-featured) .story-image-placeholder { background: linear-gradient(135deg, #2A9D8F22, #7B68EE22); }
+    .story-content { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+    .story-category {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .story-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .story-featured .story-content h3 { font-size: 1.5rem; }
+    .story-content p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .story-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .story-author-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--gradient-gold);
+    }
+    .story-author-name { font-weight: 600; color: var(--navy); }
+    .story-author-date { color: #999; }
+    .story-sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+    /* ===== BOARD MEMBERS ===== */
+    .board { background: #fff; }
+    .board-header { text-align: center; margin-bottom: 60px; }
+    .board-header .section-subtitle { margin: 0 auto; }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .board-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid #f0f0f0;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .board-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .board-card .board-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .board-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .board-card .board-role {
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      min-height: 36px;
+    }
+    .board-card .board-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      transition: all 0.3s;
+    }
+    .board-card .board-linkedin:hover {
+      background: #0A66C2;
+    }
+    .board-card .board-linkedin:hover svg { fill: #fff; }
+    .board-card .board-linkedin svg {
+      fill: #0A66C2;
+      transition: fill 0.3s;
+    }
+    .board-leadership {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .board-leadership .board-card {
+      background: var(--warm-white);
+      border: 1px solid rgba(196,151,47,0.15);
+    }
+    .board-leadership .board-card:hover {
+      border-color: transparent;
+    }
+    .board-divider {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .board-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #eee;
+    }
+    .board-divider span {
+      position: relative;
+      background: #fff;
+      padding: 0 24px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    @media (max-width: 1024px) {
+      .board-leadership { grid-template-columns: repeat(2, 1fr); }
+      .board-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .board-leadership { grid-template-columns: 1fr; }
+      .board-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ===== SIGNUP / NEWSLETTER ===== */
+    .signup {
+      background: linear-gradient(135deg, #003262 0%, #1a1a5e 50%, #4a2080 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .signup::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232,195,106,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .signup::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232,99,111,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .signup-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .signup-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .signup-text p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .signup-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .signup-perks li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+    }
+    .signup-perks li .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(196,151,47,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .signup-form-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+    .signup-form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--navy); color: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .signup-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px;
+      font-size: 1rem;
+      justify-content: center;
+    }
+    .form-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ===== SOCIAL / CONNECT ===== */
+    .connect { background: #fff; text-align: center; }
+    .connect .section-subtitle { margin: 0 auto 48px; }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .social-card {
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+    .social-card:hover { transform: translateY(-6px); }
+    .social-card.facebook {
+      background: linear-gradient(135deg, #1877F2, #42A5F5);
+      box-shadow: 0 10px 40px rgba(24,119,242,0.3);
+    }
+    .social-card.facebook:hover { box-shadow: 0 16px 50px rgba(24,119,242,0.4); }
+    .social-card.instagram {
+      background: linear-gradient(135deg, #E1306C, #F77737, #FCAF45);
+      box-shadow: 0 10px 40px rgba(225,48,108,0.3);
+    }
+    .social-card.instagram:hover { box-shadow: 0 16px 50px rgba(225,48,108,0.4); }
+    .social-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .social-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .social-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 20px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .social-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy-dark);
+      padding: 60px 0 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-social { display: flex; gap: 16px; }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SUCCESS MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 48px;
+      text-align: center;
+      max-width: 440px;
+      margin: 24px;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .modal-box p {
+      font-size: 0.92rem;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    /* ===== MOBILE NAV ===== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--navy);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid { grid-template-columns: 1fr 1fr; }
+      .spotlight-featured { grid-template-columns: 1fr; }
+      .spotlight-mini-grid { grid-template-columns: repeat(3, 1fr); }
+      .stories-grid { grid-template-columns: 1fr; }
+      .story-featured { grid-template-columns: 1fr; }
+      .story-sidebar { flex-direction: row; }
+      .story-sidebar .story-card { flex: 1; }
+      .signup-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .spotlight-mini-grid { grid-template-columns: 1fr; }
+      .story-sidebar { flex-direction: column; }
+      .social-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">WILA<span>.</span></a>
+      <div class="nav-links">
+        <a href="#pillars">Our Pillars</a>
+        <a href="#events">Events</a>
+        <a href="#spotlight">Spotlight</a>
+        <a href="#stories">Stories</a>
+        <a href="#board">Board</a>
+        <a href="#connect">Connect</a>
+        <a href="#signup" class="nav-cta">Join WILA</a>
+      </div>
+      <div class="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMobile()">&times;</button>
+    <a href="#pillars" onclick="toggleMobile()">Our Pillars</a>
+    <a href="#events" onclick="toggleMobile()">Events</a>
+    <a href="#spotlight" onclick="toggleMobile()">Spotlight</a>
+    <a href="#stories" onclick="toggleMobile()">Stories</a>
+    <a href="#board" onclick="toggleMobile()">Board</a>
+    <a href="#connect" onclick="toggleMobile()">Connect</a>
+    <a href="#signup" onclick="toggleMobile()">Join WILA</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Berkeley Haas Alumni Network</div>
+        <h1>Celebrating the <span class="highlight">Power</span> of Women Together</h1>
+        <p>A worldwide network of Berkeley Haas alumnae committed to a community that amplifies women's voices, nurtures authentic connections, and drives impact.</p>
+        <div class="hero-buttons">
+          <a href="#signup" class="btn btn-primary">Become a Member &rarr;</a>
+          <a href="#events" class="btn btn-outline">View Upcoming Events</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h3>500+</h3>
+            <p>Active Members</p>
+          </div>
+          <div class="hero-stat">
+            <h3>50+</h3>
+            <p>Events Per Year</p>
+          </div>
+          <div class="hero-stat">
+            <h3>15+</h3>
+            <p>Years of Impact</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars section-pad" id="pillars">
+    <div class="container">
+      <div class="pillars-header fade-up">
+        <div class="section-label" style="background: #FFF3D6; color: var(--gold);">Our Foundation</div>
+        <h2 class="section-title">Built on Four Defining Principles</h2>
+        <p class="section-subtitle">Rooted in the Haas Defining Leadership Principles, WILA channels these values into action for women.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon">&#10024;</div>
+          <h3>Question the Status Quo</h3>
+          <p>Diversity &amp; Inclusion — Challenging norms and championing equitable representation.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon">&#128150;</div>
+          <h3>Confidence Without Attitude</h3>
+          <p>Positive Engagement &amp; Well-Being — Leading with humility and authenticity.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon">&#128218;</div>
+          <h3>Student Always</h3>
+          <p>Professional Development — Continuously growing through learning and mentorship.</p>
+        </div>
+        <div class="pillar-card fade-up">
+          <div class="pillar-icon">&#127758;</div>
+          <h3>Beyond Yourself</h3>
+          <p>Community Support &amp; Impact — Creating positive change that extends beyond ourselves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events section-pad" id="events">
+    <div class="container">
+      <div class="events-header fade-up">
+        <div>
+          <div class="section-label" style="background: var(--coral-light); color: var(--coral);">What's Coming Up</div>
+          <h2 class="section-title">Upcoming Events</h2>
+          <p class="section-subtitle">Join us for in-person gatherings and virtual sessions aligned with our four pillars.</p>
+        </div>
+        <a href="#" class="btn btn-dark">View All Events &rarr;</a>
+      </div>
+      <div class="events-grid">
+        <div class="event-card fade-up">
+          <div class="event-image">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#E8C96A33,#E8636F33);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#127891;</div>
+            <div class="event-date-badge">
+              <span class="month">MAR</span>
+              <span class="day">15</span>
+            </div>
+            <div class="event-type-badge">In Person</div>
+          </div>
+          <div class="event-body">
+            <h3>Women in Tech Leadership Panel</h3>
+            <p>Hear from trailblazing Haas alumnae shaping the future of technology and AI.</p>
+            <div class="event-meta">
+              <span>&#128205; San Francisco, CA</span>
+              <span>&#128336; 6:00 PM PT</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-card fade-up">
+          <div class="event-image">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#2A9D8F33,#5ECEC333);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#128172;</div>
+            <div class="event-date-badge">
+              <span class="month">MAR</span>
+              <span class="day">22</span>
+            </div>
+            <div class="event-type-badge">Virtual</div>
+          </div>
+          <div class="event-body">
+            <h3>Mentorship Mixer: Career Transitions</h3>
+            <p>An intimate virtual session connecting mentors and mentees on navigating career pivots.</p>
+            <div class="event-meta">
+              <span>&#128187; Zoom</span>
+              <span>&#128336; 12:00 PM PT</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-card fade-up">
+          <div class="event-image">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#7B68EE33,#A594F933);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#127942;</div>
+            <div class="event-date-badge">
+              <span class="month">APR</span>
+              <span class="day">05</span>
+            </div>
+            <div class="event-type-badge">In Person</div>
+          </div>
+          <div class="event-body">
+            <h3>Annual WILA Awards Gala</h3>
+            <p>Celebrating outstanding alumnae making an impact in their industries and communities.</p>
+            <div class="event-meta">
+              <span>&#128205; Berkeley, CA</span>
+              <span>&#128336; 7:00 PM PT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT -->
+  <section class="spotlight section-pad" id="spotlight">
+    <div class="container">
+      <div class="spotlight-header fade-up">
+        <div class="section-label">Candidate Spotlight</div>
+        <h2 class="section-title">Leaders Making Waves</h2>
+        <p class="section-subtitle">Meet the remarkable women from our community who are redefining leadership.</p>
+      </div>
+      <div class="spotlight-featured fade-up">
+        <div class="spotlight-image">
+          <div class="spotlight-image-placeholder">
+            <span class="initials">SK</span>
+          </div>
+        </div>
+        <div class="spotlight-info">
+          <h3>Samira Kapoor</h3>
+          <p class="role">MBA '14 &middot; VP of Product, FinTech Startup</p>
+          <p class="quote">"WILA gave me the confidence and network to take bold bets in my career. The mentorship I received transformed the way I lead."</p>
+          <div class="spotlight-tags">
+            <span>Product Strategy</span>
+            <span>FinTech</span>
+            <span>Diversity Advocate</span>
+            <span>Mentor</span>
+          </div>
+          <a href="#" class="btn btn-primary">Read Full Story &rarr;</a>
+        </div>
+      </div>
+      <div class="spotlight-mini-grid fade-up">
+        <div class="mini-spotlight">
+          <div class="mini-avatar">AL</div>
+          <h4>Angela Liu</h4>
+          <p>MBA '18 &middot; Healthcare Strategy</p>
+        </div>
+        <div class="mini-spotlight">
+          <div class="mini-avatar">RM</div>
+          <h4>Rachel Martinez</h4>
+          <p>MBA '11 &middot; Climate Tech CEO</p>
+        </div>
+        <div class="mini-spotlight">
+          <div class="mini-avatar">PN</div>
+          <h4>Priya Nair</h4>
+          <p>MBA '20 &middot; Social Impact Investor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORIES -->
+  <section class="stories section-pad" id="stories">
+    <div class="container">
+      <div class="stories-header fade-up">
+        <div class="section-label" style="background: var(--teal-light); color: var(--teal);">Community Stories</div>
+        <h2 class="section-title">Voices from Our Network</h2>
+        <p class="section-subtitle">Real stories from WILA members on mentorship, career growth, and the power of community.</p>
+      </div>
+      <div class="stories-grid fade-up">
+        <div class="story-card story-featured">
+          <div class="story-featured">
+            <div class="story-image">
+              <div class="story-image-placeholder">&#128161;</div>
+            </div>
+            <div class="story-content">
+              <span class="story-category">Mentorship</span>
+              <h3>How a Single Coffee Chat Changed My Career Trajectory</h3>
+              <p>When I connected with my WILA mentor, I never expected a 30-minute coffee chat to lead to a complete career pivot — from consulting to leading product at a Series B startup.</p>
+              <div class="story-author">
+                <div class="story-author-avatar">JR</div>
+                <div>
+                  <div class="story-author-name">Jamie Rivera, MBA '16</div>
+                  <div class="story-author-date">February 2026</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-sidebar">
+          <div class="story-card">
+            <div class="story-image">
+              <div class="story-image-placeholder">&#127793;</div>
+            </div>
+            <div class="story-content">
+              <span class="story-category">Community Impact</span>
+              <h3>Building Bridges: Our Annual Service Day Recap</h3>
+              <p>Over 75 WILA members came together to volunteer across three Bay Area nonprofits.</p>
+              <div class="story-author">
+                <div class="story-author-avatar">TW</div>
+                <div>
+                  <div class="story-author-name">Tina Wang, MBA '19</div>
+                  <div class="story-author-date">January 2026</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="story-card">
+            <div class="story-image">
+              <div class="story-image-placeholder">&#128640;</div>
+            </div>
+            <div class="story-content">
+              <span class="story-category">Professional Growth</span>
+              <h3>From Board Room to Board Seat: Lessons in Governance</h3>
+              <p>A WILA alum shares her journey to her first corporate board seat and advice for aspiring directors.</p>
+              <div class="story-author">
+                <div class="story-author-avatar">LD</div>
+                <div>
+                  <div class="story-author-name">Lisa Donovan, MBA '08</div>
+                  <div class="story-author-date">December 2025</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARD MEMBERS -->
+  <section class="board section-pad" id="board">
+    <div class="container">
+      <div class="board-header fade-up">
+        <div class="section-label" style="background: linear-gradient(135deg, #FFF3D6, #FFEAB0); color: var(--gold);">Leadership</div>
+        <h2 class="section-title">Meet Our Board</h2>
+        <p class="section-subtitle">The dedicated leaders who drive WILA's mission, programs, and community impact.</p>
+      </div>
+
+      <!-- Executive Leadership -->
+      <div class="board-divider fade-up"><span>Executive Leadership</span></div>
+      <div class="board-leadership fade-up">
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-gold);">TT</div>
+          <h4>Tricia Tran</h4>
+          <p class="board-role">Founding Co-President &amp; Advisor</p>
+          <a href="https://www.linkedin.com/in/triciatranbayarea/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Tricia Tran LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-coral);">AB</div>
+          <h4>Abha Bhagat</h4>
+          <p class="board-role">Founding Co-President</p>
+          <a href="https://www.linkedin.com/in/abhabhagat/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Abha Bhagat LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-teal);">DP</div>
+          <h4>Deepti Patibandla</h4>
+          <p class="board-role">Co-President</p>
+          <a href="https://www.linkedin.com/in/deeptipatibandla/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Deepti Patibandla LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Board Members -->
+      <div class="board-divider fade-up"><span>Board Members</span></div>
+      <div class="board-grid fade-up">
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, var(--lavender), #A594F9);">DM</div>
+          <h4>Dimple Malkani</h4>
+          <p class="board-role">Founding VP &amp; Advisor</p>
+          <a href="https://www.linkedin.com/in/dimplemalkani" target="_blank" rel="noopener" class="board-linkedin" aria-label="Dimple Malkani LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, #F77737, #FCAF45);">MS</div>
+          <h4>Melissa Sharp</h4>
+          <p class="board-role">VP Marketing</p>
+          <a href="https://www.linkedin.com/in/melissasharpmba/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Melissa Sharp LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, #E1306C, #F4A4AB);">ND</div>
+          <h4>Neha Dubey</h4>
+          <p class="board-role">Treasurer</p>
+          <a href="https://www.linkedin.com/in/neha-dubey99/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Neha Dubey LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-teal);">RA</div>
+          <h4>Rosi Arnaudova</h4>
+          <p class="board-role">VP Operations</p>
+          <a href="https://www.linkedin.com/in/arnaudovarosi/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Rosi Arnaudova LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-gold);">MA</div>
+          <h4>Meenu Annmalai</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/meenu88" target="_blank" rel="noopener" class="board-linkedin" aria-label="Meenu Annmalai LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, #2A9D8F, #5ECEC3);">BG</div>
+          <h4>Berna Geylani</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/demandgenerationleader/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Berna Geylani LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, var(--lavender), #A594F9);">KL</div>
+          <h4>Katie Li</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/katienli" target="_blank" rel="noopener" class="board-linkedin" aria-label="Katie Li LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-coral);">LA</div>
+          <h4>Laura Andersen</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/lauraandersen/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Laura Andersen LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-teal);">SK</div>
+          <h4>Sara Kopunova</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/sara-kopunova/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Sara Kopunova LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: var(--gradient-gold);">JL</div>
+          <h4>Jes La Russa</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/jeslarussa/" target="_blank" rel="noopener" class="board-linkedin" aria-label="Jes La Russa LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, var(--lavender), #A594F9);">MM</div>
+          <h4>Michelle Ma</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/michellemacoach" target="_blank" rel="noopener" class="board-linkedin" aria-label="Michelle Ma LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="board-card">
+          <div class="board-avatar" style="background: linear-gradient(135deg, #F77737, #FCAF45);">RM</div>
+          <h4>Ruja Manghani</h4>
+          <p class="board-role">Board Member</p>
+          <a href="https://www.linkedin.com/in/rujamanghani-md" target="_blank" rel="noopener" class="board-linkedin" aria-label="Ruja Manghani LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup section-pad" id="signup">
+    <div class="container">
+      <div class="signup-inner">
+        <div class="signup-text fade-up">
+          <h2>Stay Connected. Stay Informed.</h2>
+          <p>Join our mailing list and never miss an event, story, or opportunity to connect with fellow WILA members.</p>
+          <ul class="signup-perks">
+            <li><span class="check">&#10003;</span> Early access to event registration</li>
+            <li><span class="check">&#10003;</span> Monthly newsletter with member spotlights</li>
+            <li><span class="check">&#10003;</span> Exclusive mentorship matching invitations</li>
+            <li><span class="check">&#10003;</span> Community announcements and career resources</li>
+          </ul>
+        </div>
+        <div class="signup-form-card fade-up">
+          <h3>Join the Community</h3>
+          <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Doe" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-group">
+              <label>Class Year (optional)</label>
+              <input type="text" placeholder="MBA '20" />
+            </div>
+            <div class="form-group">
+              <label>Interests</label>
+              <select>
+                <option value="">Select your primary interest</option>
+                <option>Mentorship &amp; Career Growth</option>
+                <option>Networking Events</option>
+                <option>Community Service</option>
+                <option>Professional Development</option>
+                <option>All of the Above</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary signup-submit">Sign Up for Updates &rarr;</button>
+            <p class="form-note">We respect your privacy. Unsubscribe any time.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT / SOCIAL -->
+  <section class="connect section-pad" id="connect">
+    <div class="container">
+      <div class="fade-up">
+        <div class="section-label" style="background: var(--lavender-light); color: var(--lavender);">Follow Us</div>
+        <h2 class="section-title">Connect with WILA</h2>
+        <p class="section-subtitle">Stay in the loop. Follow us on social media for event updates, member stories, and community highlights.</p>
+      </div>
+      <div class="social-grid fade-up">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-card facebook">
+          <div class="social-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <h3>Facebook</h3>
+          <p>Join our community page for discussions, event recaps, and member updates.</p>
+          <span class="social-btn">Follow on Facebook &rarr;</span>
+        </a>
+        <a href="https://www.instagram.com/haas_wila/" target="_blank" rel="noopener" class="social-card instagram">
+          <div class="social-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <h3>Instagram</h3>
+          <p>Behind-the-scenes looks at events, member features, and inspiring moments.</p>
+          <span class="social-btn">Follow @haas_wila &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">WILA<span>.</span></a>
+          <p>Women in Leadership Alumnae — A worldwide network of Berkeley Haas alumnae committed to celebrating and amplifying the power of women together.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a href="#pillars">Our Pillars</a>
+          <a href="#events">Events</a>
+          <a href="#spotlight">Spotlight</a>
+          <a href="#stories">Stories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="#signup">Join WILA</a>
+          <a href="#">Mentorship Network</a>
+          <a href="#">Photo Gallery</a>
+          <a href="#board">Board Members</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:wila@haasalumni.org">wila@haasalumni.org</a>
+          <a href="https://www.instagram.com/haas_wila/" target="_blank">Instagram @haas_wila</a>
+          <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Women in Leadership Alumnae, Berkeley Haas. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/haas_wila/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon">&#10003;</div>
+      <h3>Welcome to WILA!</h3>
+      <p>You've been added to our mailing list. Watch your inbox for event invitations, member spotlights, and community updates.</p>
+      <button class="btn btn-primary" onclick="closeModal()">Got It &rarr;</button>
+    </div>
+  </div>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    function toggleMobile() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    // Signup form handler
+    function handleSignup(e) {
+      e.preventDefault();
+      document.getElementById('successModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('active');
+      document.getElementById('signupForm').reset();
+    }
+
+    // Close modal on overlay click
+    document.getElementById('successModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    // Scroll-triggered fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
